@@ -27,3 +27,60 @@ html {
 .btn:hover {
   background-color: #4f46e5;
 }
+#typing::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blin// HAMBURGER MENU
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+// TYPING ANIMATION
+const roles = [
+  "Frontend Developer",
+  "UI/UX Enthusiast",
+  "Creative Coder"
+];
+
+let i = 0;
+let j = 0;
+let currentText = "";
+let isDeleting = false;
+
+function type() {
+  currentText = roles[i];
+
+  if (!isDeleting) {
+    document.getElementById("typing").innerHTML =
+      currentText.substring(0, j++);
+  } else {
+    document.getElementById("typing").innerHTML =
+      currentText.substring(0, j--);
+  }
+
+  if (j == currentText.length) isDeleting = true;
+  if (j == 0 && isDeleting) {
+    isDeleting = false;
+    i = (i + 1) % roles.length;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+
+type();
+
+// SCROLL ANIMATION
+const elements = document.querySelectorAll('.fade-in');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      el.classList.add('show');
+    }
+  });
+});k {
+  50% { opacity: 0; }
+}
